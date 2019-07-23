@@ -2,8 +2,10 @@
 /* DBMS name:      MySQL 5.0                                    */
 /* Created on:     2019/7/16 22:43:28                           */
 /*==============================================================*/
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
 drop database if exists hero_auth;
-create database hero_auth default character set utf8mb4 collate utf8mb4_general_ci;
+create database hero_auth;
 use hero_auth;
 
 drop table if exists Action;
@@ -162,6 +164,7 @@ alter table Permission comment '权限表';
 create table Role
 (
    Id                   bigint not null auto_increment comment '主键',
+   DeptId               bigint comment '组织机构Id',
    Name                 varchar(50) not null comment '角色名称',
    Memo                 varchar(100) comment '备注',
    Status               int not null comment '状态',
@@ -201,6 +204,7 @@ create table UserInfo
 (
    Id                   bigint not null auto_increment comment '主键',
    UserName             varchar(50) not null comment '用户名',
+   DeptId               bigint not null comment '所属部门Id',
    Password             varchar(100) not null comment '密码',
    ChineseName          varchar(50) not null comment '中文名',
    Email                varchar(50) not null comment '电子邮件',
